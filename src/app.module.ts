@@ -9,24 +9,28 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { ArtistsModule } from './artists/artists.module';
+import { AutModule } from './aut/aut.module';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { secret } from './things';
+import { Artist } from './artists/entities/artist.entity';
+import { datasourceOption } from 'db/data-source';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'gregemax700@gmail.com',
-
-      database: 'emax',
-      entities: [Song, Playlist, User],
-      synchronize: true,
+    ConfigModule.forRoot({
+      envFilePath: ".env",
+      isGlobal: true,
+      
     }),
+    TypeOrmModule.forRoot(datasourceOption),
+
     SongModule,
     PlaylistModule,
     UserModule,
     ArtistsModule,
+    AutModule, 
   ],
 })
 export class AppModule implements NestModule {

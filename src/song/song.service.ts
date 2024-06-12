@@ -24,7 +24,7 @@ export class SongService {
   }
 
   update(id: number, updateSongDto: UpdateSongDto) {
-    return ;
+    return this.songrep.update({id},updateSongDto)
   }
 
   remove(id: number) {

@@ -22,4 +22,6 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   confirmpassword: string;
+
+  apistring:string
 }

@@ -7,12 +7,12 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post("signup")
  async create(@Body() createUserDto: CreateUserDto) {
     try {
       if (createUserDto.password === createUserDto.confirmpassword) {
         
-        return await this.userService.create(createUserDto);
+        return await this.userService.signUp(createUserDto);
       } else {
         throw new Error('confirmpassword must match password')
       }
